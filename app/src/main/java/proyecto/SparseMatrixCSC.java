@@ -2,16 +2,20 @@ package proyecto;
 
 import javax.naming.OperationNotSupportedException;
 import lombok.Getter;
+import lombok.Setter;
 import java.util.LinkedList;
 import java.io.FileNotFoundException;
 
 public class SparseMatrixCSC {
     private LoadFile loader = LoadFile.getInstance();
     private int[][] matrix;
+    @Setter
     @Getter
     private int[] rows;
+    @Setter
     @Getter
     private int[] columns;
+    @Setter
     @Getter
     private int[] values;
 
@@ -121,7 +125,7 @@ public class SparseMatrixCSC {
         squaredMatrix.setColumns(this.columns);
         squaredMatrix.setRows(this.rows);
         int[] values = new int[this.values.length];
-        for (int i = 0; i<values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             values[i] = (int) Math.pow(this.values[i], 2);
         }
         squaredMatrix.setValues(values);
