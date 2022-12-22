@@ -2,7 +2,7 @@ package proyecto;
 
 import javax.naming.OperationNotSupportedException;
 import lombok.Getter;
-import java.util.LinkedList; //Librería importada para crear listas enlazadas
+import java.util.LinkedList;
 import java.io.FileNotFoundException;
 
 public class SparseMatrixCSC {
@@ -15,10 +15,7 @@ public class SparseMatrixCSC {
     @Getter
     private int[] values;
 
-    public void createRepresentation(String inputFile) throws OperationNotSupportedException, FileNotFoundException {
-        //Load data
-        loader.loadFile(inputFile);
-        matrix = loader.getMatrix();
+    public void createRepresentation(String inputFile) throws FileNotFoundException {
         //Load data
         loader.loadFile(inputFile);
         matrix = loader.getMatrix();
@@ -66,7 +63,7 @@ public class SparseMatrixCSC {
         }
     }
 
-    public int getElement(int i, int j) throws OperationNotSupportedException
+    public int getElement(int i, int j)
     {
         for (int z = this.columns[j]; z < this.columns[j + 1]; z++) {
             if (this.rows[z] == i) {
@@ -76,7 +73,7 @@ public class SparseMatrixCSC {
         return 0;
     }
 
-    public int[] getRow(int i) throws OperationNotSupportedException
+    public int[] getRow(int i)
     {
         int[] valorFila = new int[this.columns.length - 1];
         for (int j = 0; j < valorFila.length; j++) {
@@ -88,7 +85,7 @@ public class SparseMatrixCSC {
         }
         return valorFila;
     }
-    
+
     private int max(int[] num) {
         int numeroMax = num[0];
         for (int numero : num) {
@@ -98,8 +95,7 @@ public class SparseMatrixCSC {
         }
         return numeroMax;
     }
-    
-    public int[] getColumn(int j) throws OperationNotSupportedException
+    public int[] getColumn(int j)
     {
         int[] valorColumna = new int[max(this.rows) + 1];
 
@@ -119,20 +115,12 @@ public class SparseMatrixCSC {
         throw new OperationNotSupportedException();
     }
 
-    /*
-     * This method returns a representation of the Squared matrix
-     * @return object that contests the squared matrix;
-     */
     public SparseMatrixCSC getSquareMatrix() throws OperationNotSupportedException
     {
         SparseMatrixCSC squaredMatrix = new SparseMatrixCSC();
         throw new OperationNotSupportedException();
     }
 
-    /*
-     * This method returns a representation of the transposed matrix
-     * @return object that contests the transposed matrix;
-     */
     public SparseMatrixCSC getTransposedMatrix() throws OperationNotSupportedException
     {
         SparseMatrixCSC squaredMatrix = new SparseMatrixCSC();
