@@ -118,7 +118,14 @@ public class SparseMatrixCSC {
     public SparseMatrixCSC getSquareMatrix() throws OperationNotSupportedException
     {
         SparseMatrixCSC squaredMatrix = new SparseMatrixCSC();
-        throw new OperationNotSupportedException();
+        squaredMatrix.setColumns(this.columns);
+        squaredMatrix.setRows(this.rows);
+        int[] values = new int[this.values.length];
+        for (int i = 0; i<values.length; i++) {
+            values[i] = (int) Math.pow(this.values[i], 2);
+        }
+        squaredMatrix.setValues(values);
+        return squaredMatrix;
     }
 
     public SparseMatrixCSC getTransposedMatrix() throws OperationNotSupportedException
