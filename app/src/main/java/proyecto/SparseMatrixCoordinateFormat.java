@@ -3,6 +3,7 @@ package proyecto;
 import javax.naming.OperationNotSupportedException;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.LinkedList; //Librería importada para crear listas enlazadas
 
 import java.io.FileNotFoundException;
 
