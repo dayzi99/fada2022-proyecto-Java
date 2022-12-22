@@ -2,20 +2,28 @@ package proyecto;
 
 import javax.naming.OperationNotSupportedException;
 import lombok.Getter;
+import lombok.Setter;
 import java.util.LinkedList; //Librería importada para crear listas enlazadas
 import java.io.FileNotFoundException;
 
 public class SparseMatrixCSR {
     private LoadFile loader = LoadFile.getInstance();
+    @Setter
+
     private int[][] matrix;
     @Getter
+    @Setter
     private int[] rows;
     @Getter
+    @Setter
+
     private int[] columns;
     @Getter
+    @Setter
+
     private int[] values;
 
-    public void createRepresentation(String inputFile) throws OperationNotSupportedException, FileNotFoundException {
+    public void createRepresentation(String inputFile) throws FileNotFoundException {
         //Load data
         loader.loadFile(inputFile);
         matrix = loader.getMatrix();
@@ -76,7 +84,7 @@ public class SparseMatrixCSR {
         }
     }
 
-    public int getElement(int i, int j) throws OperationNotSupportedException
+    public int getElement(int i, int j)
     {
         //Se recorre el arreglo values hasta encontrar los datos que coincidan
         // con las posiciones dadas y retorna el valor en esa posición
@@ -90,7 +98,7 @@ public class SparseMatrixCSR {
 
         return 0;
     }
-    
+
     private int max(int[] num) {
 
         int numeroMax = num[0];
@@ -104,8 +112,8 @@ public class SparseMatrixCSR {
 
         return numeroMax;
     }
-    
-    public int[] getRow(int i) throws OperationNotSupportedException
+
+    public int[] getRow(int i)
     {
         int[] valorFila = new int[max(this.columns) + 1];
         int[] index = new int[this.rows[i + 1 ] - this.rows[i]];
@@ -125,7 +133,7 @@ public class SparseMatrixCSR {
         return valorFila;
     }
 
-    public int[] getColumn(int j) throws OperationNotSupportedException
+    public int[] getColumn(int j)
     {
         int[] valorColumna = new int[this.rows.length - 1];
 
@@ -139,19 +147,15 @@ public class SparseMatrixCSR {
             }
         }
 
-        return valorColumna;    
-        }
+        return valorColumna;
+    }
 
     public void setValue(int i, int j, int value) throws OperationNotSupportedException
     {
         throw new OperationNotSupportedException();
     }
 
-    /*
-     * This method returns a representation of the Squared matrix
-     * @return object that contests the squared matrix;
-     */
-    public SparseMatrixCSR getSquareMatrix() throws OperationNotSupportedException
+    public SparseMatrixCSR getSquareMatrix()
     {
         SparseMatrixCSR squaredMatrix = new SparseMatrixCSR();
         squaredMatrix.setColumns(this.columns);
@@ -165,12 +169,8 @@ public class SparseMatrixCSR {
         squaredMatrix.setValues(valor);
 
         return squaredMatrix;
-       }
+    }
 
-    /*
-     * This method returns a representation of the transposed matrix
-     * @return object that contests the transposed matrix;
-     */
     public SparseMatrixCSR getTransposedMatrix() throws OperationNotSupportedException
     {
         SparseMatrixCSR squaredMatrix = new SparseMatrixCSR();
